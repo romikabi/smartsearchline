@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smartsearchline</string>
+    <string name="airport_airline_enter_tip">Аэропорт или Авиалиния</string>
+    <string name="arrival_airport_enter_tip">Аэропорт прибытия</string>
+    <string name="flight_number_enter_tip">Номер рейса</string>
+    <string name="airline_enter_tip">Авиалиния</string>
+    <string name="departure_airport_enter_tip">Аэропорт отправления</string>
+    <string name="surname_enter_tip">Фамилия пассажира</string>
+    <string name="initial_enter_tip">Аэропорт, Авиалиния или брон.</string>
+    <string name="use_as_booking_ref">Использовать как код бронирования</string>
+    <string name="departure_date_enter_tip">Дата вылета</string>
+    <string name="use_as_airline">Использовать как код авиалинии</string>
+    <string name="use_as_booking">Использовать как код бр.</string>
+    <string name="airline_usual_length">Обычно 2 или 3 символа</string>
+    <string name="booking_usual_length">Обычно 5 или 6 символов</string>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Smartsearchline</string>
+    <string name="airport_airline_enter_tip">Airport or Airline</string>
+    <string name="arrival_airport_enter_tip">Arrival airport</string>
+    <string name="flight_number_enter_tip">Flight number</string>
+    <string name="airline_enter_tip">Airline</string>
+    <string name="departure_airport_enter_tip">Departure airport</string>
+    <string name="surname_enter_tip">Passenger\'s lastname</string>
+    <string name="initial_enter_tip">Airport, Airline or Book ref.</string>
+    <string name="use_as_booking_ref">Use as booking reference</string>
+    <string name="departure_date_enter_tip">Departure date</string>
+    <string name="use_as_airline">Use as airline code</string>
+    <string name="use_as_booking">Use as booking</string>
+    <string name="airline_usual_length">Usually 2 or 3 symbols</string>
+    <string name="booking_usual_length">Usually 5 or 6 symbols</string>
+</resources>
