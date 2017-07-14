@@ -12,8 +12,11 @@ import java.util.Stack;
  * 08.07.17
  */
 
+/**
+ * Implementation of search model via State pattern.
+ */
 public class StateSearchModel implements SearchModel {
-    Stack<Provider> states;
+    private Stack<Provider> states;
 
     public StateSearchModel(Provider initial) {
         states = new Stack<>();
@@ -29,9 +32,7 @@ public class StateSearchModel implements SearchModel {
         return states.peek();
     }
 
-    private List<Provider.Data> suggestions;
-
-    List<Provider.Data> results = new ArrayList<>();
+    private List<Provider.Data> results = new ArrayList<>();
 
     @Override
     public void pass(Provider.Data data) {

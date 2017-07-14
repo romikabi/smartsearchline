@@ -13,6 +13,7 @@ import java.util.Map;
  */
 
 public class ConcreteProvider implements Provider {
+
     public interface Suggestor {
         List<View> getSuggestions(String request);
     }
@@ -25,6 +26,14 @@ public class ConcreteProvider implements Provider {
 
     private ArrayAdapter adapter;
 
+    /**
+     *
+     * @param inputType this state's input type.
+     * @param hint this state's hint.
+     * @param isfinal is this state final.
+     * @param adapter this state's adapter for listview.
+     * @param headers provider of headers for this state.
+     */
     public ConcreteProvider(InputType inputType, String hint, boolean isfinal, ArrayAdapter adapter, Suggestor headers) {
         this.inputType = inputType;
         this.hint = hint;

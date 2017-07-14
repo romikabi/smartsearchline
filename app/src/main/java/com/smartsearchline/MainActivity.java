@@ -42,39 +42,44 @@ import java.util.TreeMap;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Views from xml.
+
     private EditText input;
     private ListView suggestionList;
     private LinearLayout statePictures;
     private SearchModel model;
-    private static LayoutInflater inflater;
-
     private LinearLayout headers;
+
+    private static LayoutInflater inflater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Get views from xml.
         input = (EditText) findViewById(R.id.inputText);
         suggestionList = (ListView) findViewById(R.id.suggestionList);
         statePictures = (LinearLayout) findViewById(R.id.statePictures);
+
         model = getModel();
+
         inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
+        // Create layout for listview headers (since they can't be added after setting the adapter in API 16)/
         headers = new LinearLayout(getApplicationContext());
         headers.setOrientation(LinearLayout.VERTICAL);
         suggestionList.addHeaderView(headers, null, true);
+
+        // Set initials.
         if (model.getAdapter() != null)
             suggestionList.setAdapter(model.getAdapter());
-
         input.setHint(model.getHint());
-
         input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onEditTextClick(v);
             }
         });
-
         input.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -102,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // catch backspace
+        // Set backspace catcher.
         input.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -129,6 +134,9 @@ public class MainActivity extends AppCompatActivity {
         input.setText("");
     }
 
+    /**
+     * Move model back for one state.
+     */
     private void unpass() {
         String prevInput = "";
 
@@ -136,19 +144,27 @@ public class MainActivity extends AppCompatActivity {
         prevInput = model.unpass();
         statePictures.removeViewAt(statePictures.getChildCount() - 1);
 
-
         resetStateView();
         input.setText(prevInput);
         input.setSelection(input.getText().length());
     }
 
+    /**
+     * Amount of passed pieces of data.
+     */
     private int passed = 0;
 
+    /**
+     * Add data piece's selected view to layout of selected views (Top left corner).
+     * @param data data to add.
+     */
     void addSelectedView(Provider.Data data) {
         View view = data.getSelectedView(null, statePictures);
         statePictures.addView(view);
         passed++;
         final int count = passed;
+
+        // Set click listener to unpass states.
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +181,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Pass data piece to model and do related layout redraw.
+     * @param data data to pass.
+     */
     void pass(Provider.Data data) {
         addSelectedView(data);
         model.pass(data);
@@ -182,6 +202,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Redraw elements related to state changing.
+     */
     void resetStateView() {
         suggestionList.setAdapter(model.getAdapter());
         selectInputMode(model.getInputType());
@@ -193,6 +216,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Determine the input mode and apply it.
+     * @param inputType input type of the model.
+     */
     void selectInputMode(Provider.InputType inputType) {
         switch (inputType) {
             case DEFAULT:
@@ -219,21 +246,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Create view for top left corner using a string.
+     * @param string string to show.
+     * @param parent parent layout.
+     * @return view to show.
+     */
     static View stringToSelectedView(String string, ViewGroup parent) {
         View view = inflater.inflate(R.layout.string_selected, parent, false);
         ((TextView) view.findViewById(R.id.stringId)).setText(string);
         return view;
     }
 
+    /**
+     * Get AITA search model.
+     * @return
+     */
     private StateSearchModel getModel() {
         Provider initial = new ConcreteProvider(
+                // Input type
                 Provider.InputType.DEFAULT,
+
+                // User hint.
                 getString(R.string.initial_enter_tip),
+
+                // Is final.
                 false,
+
+                // ListView adapter.
                 new InitialAdapter(getApplicationContext(), 0,
                         AirportsAssetDatabaseHelper.getInstance().getAirports().getAirports(),
                         AirlineAssetDatabaseHelper.getInstance().getAirlineData().getAirlines()),
-                // headers provider
+                // Headers provider/
                 new ConcreteProvider.Suggestor() {
                     @Override
                     public List<View> getSuggestions(final String request) {
@@ -290,6 +334,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        // Same in another states.
 
         Provider airportAirport = new ConcreteProvider(
                 Provider.InputType.DEFAULT,
@@ -363,6 +409,8 @@ public class MainActivity extends AppCompatActivity {
                 new ArrayAdapter(getApplicationContext(), R.layout.default_suggestion),
                 null);
 
+        // Maps for each state to know to what state to switch after data receiving.
+
         Map<Provider.DataType, Provider> initialMap = new TreeMap<>();
         initialMap.put(Provider.DataType.AIRPORT, airportAirport);
         initialMap.put(Provider.DataType.AIRLINE, airlineFlightcode);
@@ -391,6 +439,8 @@ public class MainActivity extends AppCompatActivity {
 
         return new StateSearchModel(initial);
     }
+
+    // Methods to transform stuff to data entries.
 
     public static Provider.Data dbAirlineToData(final Airline airline) {
         return new Provider.Data() {
@@ -559,6 +609,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
     }
+
+    // Date and time management stuff.
 
     public void onEditTextClick(View view) {
         EditText et = (EditText) view;

@@ -10,6 +10,10 @@ import android.view.inputmethod.InputConnectionWrapper;
 
 import java.util.Random;
 
+/**
+ * Class to bypass the issue with backspace tracking on soft keyboards after android 4.1.
+ * (Taken from stackoverflow)
+ */
 public class ZanyEditText extends android.support.v7.widget.AppCompatEditText {
 
     private Random r = new Random();
@@ -24,11 +28,6 @@ public class ZanyEditText extends android.support.v7.widget.AppCompatEditText {
 
     public ZanyEditText(Context context) {
         super(context);
-    }
-
-    public void setRandomBackgroundColor() {
-        setBackgroundColor(Color.rgb(r.nextInt(256), r.nextInt(256), r
-                .nextInt(256)));
     }
 
     @Override

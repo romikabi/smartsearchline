@@ -24,6 +24,10 @@ import java.util.Locale;
  * 13.07.17
  */
 
+
+/**
+ * Two adapters merged.
+ */
 public class InitialAdapter extends ArrayAdapter {
     private List<Airport> airportsAll;
     private List<Airline> airlinesAll;
