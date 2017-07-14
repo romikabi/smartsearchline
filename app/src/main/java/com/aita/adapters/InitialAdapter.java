@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
-import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
 import com.aita.model.Airline;
 import com.aita.model.Airport;
-import com.example.romanabuzyarov.smartsearchline.R;
+import com.smartsearchline.R;
 
 import java.util.ArrayList;
 import java.util.List;

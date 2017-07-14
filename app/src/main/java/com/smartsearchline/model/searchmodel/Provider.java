@@ -1,4 +1,4 @@
-package com.example.romanabuzyarov.smartsearchline.model.searchmodel;
+package com.smartsearchline.model.searchmodel;
 
 import android.view.View;
 import android.view.ViewGroup;

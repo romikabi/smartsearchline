@@ -1,4 +1,4 @@
-package com.example.romanabuzyarov.smartsearchline.view;
+package com.smartsearchline.view;
 
 import android.content.Context;
 import android.graphics.Color;

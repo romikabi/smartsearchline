@@ -1,4 +1,4 @@
-package com.example.romanabuzyarov.smartsearchline;
+package com.smartsearchline;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -29,12 +29,10 @@ import com.aita.helpers.AirlineAssetDatabaseHelper;
 import com.aita.helpers.AirportsAssetDatabaseHelper;
 import com.aita.model.Airline;
 import com.aita.model.Airport;
-import com.example.romanabuzyarov.smartsearchline.model.data.external.ExternalAirline;
-import com.example.romanabuzyarov.smartsearchline.model.data.external.ExternalAirport;
-import com.example.romanabuzyarov.smartsearchline.model.searchmodel.ConcreteProvider;
-import com.example.romanabuzyarov.smartsearchline.model.searchmodel.Provider;
-import com.example.romanabuzyarov.smartsearchline.model.searchmodel.SearchModel;
-import com.example.romanabuzyarov.smartsearchline.model.searchmodel.StateSearchModel;
+import com.smartsearchline.model.searchmodel.ConcreteProvider;
+import com.smartsearchline.model.searchmodel.Provider;
+import com.smartsearchline.model.searchmodel.SearchModel;
+import com.smartsearchline.model.searchmodel.StateSearchModel;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -394,30 +392,6 @@ public class MainActivity extends AppCompatActivity {
         return new StateSearchModel(initial);
     }
 
-    private Provider.Data airportToData(final ExternalAirport airport) {
-        return new Provider.Data() {
-            @Override
-            public Provider.DataType getType() {
-                return Provider.DataType.AIRPORT;
-            }
-
-            @Override
-            public Object getValue() {
-                return airport;
-            }
-
-            @Override
-            public View getSelectedView(View empty, ViewGroup parent) {
-                return stringToSelectedView(airport.getId(), parent);
-            }
-
-            @Override
-            public String toString() {
-                return airport.getId();
-            }
-        };
-    }
-
     public static Provider.Data dbAirlineToData(final Airline airline) {
         return new Provider.Data() {
             @Override
@@ -462,30 +436,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public String toString() {
                 return airport.getCode();
-            }
-        };
-    }
-
-    private Provider.Data airlineToData(final ExternalAirline airline) {
-        return new Provider.Data() {
-            @Override
-            public Provider.DataType getType() {
-                return Provider.DataType.AIRLINE;
-            }
-
-            @Override
-            public Object getValue() {
-                return airline;
-            }
-
-            @Override
-            public View getSelectedView(View empty, ViewGroup parent) {
-                return stringToSelectedView(airline.getId(), parent);
-            }
-
-            @Override
-            public String toString() {
-                return airline.getId();
             }
         };
     }

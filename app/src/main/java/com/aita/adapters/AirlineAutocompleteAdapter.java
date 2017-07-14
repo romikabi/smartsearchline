@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
 
-import com.example.romanabuzyarov.smartsearchline.R;
+import com.smartsearchline.R;
 import com.aita.model.Airline;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.romanabuzyarov.smartsearchline;
+package com.smartsearchline;
 
 import org.junit.Test;
 
